@@ -259,7 +259,99 @@ body {
 	border: 1px solid #878A91;
 	background-color: rgba(32, 36, 47, 0.94);
 }
+/* /////////	the changinging text	//////// */
 
+/* From Uiverse.io by kennyotsu */ 
+.card {
+	/* color used to softly clip top and bottom of the .words container */
+	background-color: var(--bg-color);
+	padding: 1rem 2rem;
+	border-radius: 1.25rem;
+	width: 25%;
+  }
+  .loader {
+	color: rgb(124, 124, 124);
+	font-family: "Poppins", sans-serif;
+	font-weight: 500;
+	font-size: 25px;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	height: 40px;
+	padding: 10px 10px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	border-radius: 8px;
+  }
+  
+  .words {
+	overflow: hidden;
+	position: relative;
+  }
+  .words::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+	  var(--bg-color) 10%,
+	  transparent 30%,
+	  transparent 70%,
+	  var(--bg-color) 90%
+	);
+	z-index: 20;
+  }
+  
+  .word {
+	display: block;
+	height: 100%;
+	padding-left: 6px;
+	color: rgb(0, 129, 129);
+	font-weight: bold;
+	animation: spin_4991 4s infinite;
+  }
+  
+  @keyframes spin_4991 {
+	10% {
+	  -webkit-transform: translateY(-102%);
+	  transform: translateY(-102%);
+	}
+  
+	25% {
+	  -webkit-transform: translateY(-100%);
+	  transform: translateY(-100%);
+	}
+  
+	35% {
+	  -webkit-transform: translateY(-202%);
+	  transform: translateY(-202%);
+	}
+  
+	50% {
+	  -webkit-transform: translateY(-200%);
+	  transform: translateY(-200%);
+	}
+  
+	60% {
+	  -webkit-transform: translateY(-302%);
+	  transform: translateY(-302%);
+	}
+  
+	75% {
+	  -webkit-transform: translateY(-300%);
+	  transform: translateY(-300%);
+	}
+  
+	85% {
+	  -webkit-transform: translateY(-402%);
+	  transform: translateY(-402%);
+	}
+  
+	100% {
+	  -webkit-transform: translateY(-400%);
+	  transform: translateY(-400%);
+	}
+  }
+  
 /*////////////////////////////////////////////////////////////////////////
 //  06 - Latest works
 ///////////////////////////////////////////////////////////////////////*/
@@ -384,7 +476,6 @@ body {
   color: black;
   font-weight: bolder;
   font-size: 12px;
-  box-shadow: lightgreen 0px 7px 5px -5px;
 }
 
 .bottom .view-more .svg {
@@ -392,7 +483,6 @@ body {
   stroke: black;
   stroke-width: 3px;
   max-height: 15px;
-  box-shadow: lightgreen 0px 7px 5px -5px;
 }
 
 .bottom .social-buttons-container {
@@ -892,27 +982,29 @@ input[type="submit"]:hover {
     color: #fff;
 }
 
-.twitter-icon {
-	padding: 10px 15px;
-	border: 1px solid #33CCFF;
-	background-color: #33CCFF;
+
+.whatsapp-icon {
+    padding: 10px 15px;
+    border: 1px solid #25D366;
+    background-color: #25D366;
 }
 
-.twitter-icon:hover {
-	background-color: transparent;
-	color: #fff;
+.whatsapp-icon:hover {
+    background-color: transparent;
+    color: #fff;
 }
 
-.g-plus-icon {
-	padding: 10px 15px;
-	border: 1px solid #DD4C39;
-	background-color: #DD4C39;
+.instagram-icon {
+    padding: 10px 15px;
+    border: 1px solid #C13584;
+    background-color: #C13584;
 }
 
-.g-plus-icon:hover {
-	background-color: transparent;
-	color: #fff;
+.instagram-icon:hover {
+    background-color: transparent;
+    color: #fff;
 }
+
 
 .linkedin-icon {
 	padding: 10px 15px;

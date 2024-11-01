@@ -25,6 +25,24 @@
         <link href='http://fonts.googleapis.com/css?family=Milonga' rel='stylesheet' type='text/css'>
     </head>
     <body>
+        <center>
+        <div id="loader-at-booting" class="loader">
+            <div class="loader-at-booting">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+                <div class="bar4"></div>
+                <div class="bar5"></div>
+                <div class="bar6"></div>
+                <div class="bar7"></div>
+                <div class="bar8"></div>
+                <div class="bar9"></div>
+                <div class="bar10"></div>
+                <div class="bar11"></div>
+                <div class="bar12"></div>
+            </div>
+        </div></center>
+        <div class="main-content">
         <div class="content-block" id="header">
             <div id="overlay-1">
                 <header id="site-header" class="clearfix">
@@ -79,8 +97,6 @@
             <span class="word">Software Engineer</span>
             <span class="word">UI/UX Designer</span>
             <span class="word">Cyber Security</span>
-            <span class="word">cards</span>
-            <span class="word">buttons</span>
           </div>
         </div>
       </div>
@@ -105,7 +121,7 @@
                     <div class="portfolio-item effect-zoe">
                         <img class="img-responsive" alt="Portfolio" src="img/work3.png">
                         <figcaption>
-                            <h2 class="hidden-xs">Creative <span>Joe</span></h2>
+                            <h2 class="hidden-xs">Python- <span>Django</span></h2>
                             <p class="icon-links">
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <a href="#"><i class="fa fa-dribbble"></i></a>
@@ -401,7 +417,7 @@
                 </div>
             </div>
         </footer>	<!-- site-footer -->
-
+    </div>
 
         <!-- js -->
         <script>
@@ -439,6 +455,11 @@
     				}
 				})
 			});
+            window.addEventListener("load", function() {
+    document.getElementById("loader-at-booting").style.display = "none";
+    document.getElementById("main-content").style.display = "block";
+});
+            
         </script>
 
 	</body>

@@ -1,168 +1,323 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Church Events</title>
-</head>
-<body>
-  <h1>Upcoming Sunday Events</h1>
-  <div id="events"></div>
-
-  <hr/>
-
-  <h2>Login</h2>
-  <div id="auth-section">
-    <input type="email" id="email" placeholder="Email" />
-    <input type="password" id="password" placeholder="Password" />
-    <button id="login-email">Login</button>
-    <button id="signup-email">Sign Up</button>
-    <button id="login-google">Login with Google</button>
-    <button id="logout" style="display: none;">Logout</button>
-    <p id="auth-status" style="font-weight: bold;"></p>
-  </div>
-
-  <hr/>
-
-  <h2>Add New Event</h2>
-  <form id="eventForm" style="display: none;">
-    <input type="text" id="title" placeholder="Event Title" required /><br/><br/>
-    <textarea id="description" placeholder="Event Description" required></textarea><br/><br/>
-    <input type="date" id="date" required /><br/><br/>
-    <button type="submit">Add Event</button>
-  </form>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import {
-      getFirestore,
-      collection,
-      getDocs,
-      addDoc
-    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-    import {
-      getAuth,
-      signInWithEmailAndPassword,
-      createUserWithEmailAndPassword,
-      GoogleAuthProvider,
-      signInWithPopup,
-      signOut,
-      onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAHXMsgAK5y2bjt4-RCsACMhZCjs31Bjjw",
-      authDomain: "notification-3a090.firebaseapp.com",
-      projectId: "notification-3a090",
-      storageBucket: "notification-3a090.firebasestorage.app",
-      messagingSenderId: "709909474775",
-      appId: "1:709909474775:web:08b1874b81765ae0e9af92",
-      measurementId: "G-VEM6N8MG5Z"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
-
-    const eventForm = document.getElementById("eventForm");
-    const authStatus = document.getElementById("auth-status");
-    const logoutBtn = document.getElementById("logout");
-
-    // Fetch Events
-    async function fetchEvents() {
-      const querySnapshot = await getDocs(collection(db, "church-events"));
-      const eventsDiv = document.getElementById("events");
-      eventsDiv.innerHTML = "";
-
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        const date = data.date.toDate().toLocaleDateString('en-GB', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        });
-
-        eventsDiv.innerHTML += `
-          <div style="margin-bottom: 20px;">
-            <h3>${data.title}</h3>
-            <p><strong>Date:</strong> ${date}</p>
-            <p>${data.description}</p>
-          </div>
-        `;
-      });
+<html lang="en">Add commentMore actions
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/templatemo-style.css" />
+    <title>Aswin Oommen Jacob</title>
+    <style> .more-text {
+      display: none;
     }
 
-    fetchEvents();
+    .read-more-btn {
+      color: blue;
+      cursor: pointer;
+      text-decoration: underline;
+    }</style>
+    
+<!--
+Mini Profile Template
+https://templatemo.com/tm-530-mini-profile
+-->
+  </head>
+  <body>
+    <!-- Welcome Section -->
+    <section id="tmWelcome" class="parallax-window" data-parallax="scroll" data-image-src="img/mini-profile-bg-01.jpg">
+      <div class="container-fluid tm-brand-container-outer">
+        <div class="row">
+          <div class="col-12">
+            <!-- Logo Area -->
+            <!-- Black transparent bg -->
+            <div class="ml-auto mr-0 tm-bg-black-transparent text-white tm-brand-container-inner">
+              <div class="tm-brand-container text-center">
+                <h1 class="tm-brand-name">My Flutter Projects</h1>
+                <!-- <p class="tm-brand-description mb-0">simple parallax template</p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    // Form submission
-    eventForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const title = document.getElementById("title").value;
-      const description = document.getElementById("description").value;
-      const dateValue = document.getElementById("date").value;
+      <div class="tm-bg-white-transparent tm-welcome-container">
+        <div class="container-fluid">
+          <div class="row h-100">
+            <!-- Welcome Text -->
+            <!-- White transparent bg -->
+            <div class="col-md-7 tm-welcome-left-col">
+              <div class="tm-welcome-left">
+                <h2 class="tm-welcome-title">Welcome to My Page</h2>
+                <p class="pb-0">
+                  This is Bootstrap v4.3.1 parallax layout for you. Credit goes to <a rel="nofollow" href="https://www.pexels.com">Pexels</a> for 2 background images. In
+                  odio sapien, commodo id ullamcorper ac, dignissim at sapien.
+                  Nullam leo massa, vaius ac massa et, tincidunt imperdiet
+                turpis. </p>
+              </div>
+            </div>
+            <!-- Brown bg -->
+            <div class="col-md-5">
+              <div class="tm-welcome-right">
+                <i class="fas fa-4x fa-address-card p-3 tm-welcome-icon"></i>
+                <p class="mb-0">
+                  Please spread a word about templatemo website. Anyone can download free Bootstrap CSS templates.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Welcome section -->
 
-      if (!dateValue) {
-        alert("Please select a valid date.");
-        return;
+    <!-- Portfolio section -->
+    <section id="tmPortfolio">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="tm-portfolio-item">
+              <div class="tm-portfolio-name text-white tm-bg-white-transparent"
+     style="background-image: url('img/apps_img/dcs.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 30%;">
+</div>
+
+              <div class="tm-portfolio-description">
+                <h3 class="tm-text" style="color: brown;">
+                  Daily Catholic Saints
+                  <span class="tm-title-small">(2024 March)</span>
+                </h3>
+                <p class="mb-0" style="text-align: justify;">
+                  The "Daily Saints App" is a purpose-driven mobile application designed to facilitate daily meditation and reflection on the lives of Catholic saints. Rooted in the intersection of spirituality and technology, the app leverages a user-friendly interface, robust database <span id="dots1">...</span>
+                  <span id="more1" class="more-text"> management, and seamless network integration to provide a comprehensive and enriching experience. The app features daily insights into the lives of saints, complete with textual descriptions, captivating images, and an immersive podcast facility. Utilizing the Spreaker API for content retrieval and SQLite-3 for offline functionality, the app ensures accessibility even in the absence of a reliable internet connection. The BLoC (Business Logic Controller) software architecture is employed for efficient state management, contributing to a responsive and personalized user experience. With customizable settings, including font adjustments and day/night mode themes, the "Daily Saints App" aims to cater to the diverse spiritual needs of users, fostering a deeper connection with the Catholic saints who have left an indelible mark on history. Through its meticulous design and technological prowess, the app seeks to bridge the gap between modern living and timeless spiritual practices, providing a platform for users to embark on a daily journey of contemplation and growth.</span>
+                  <span id="readMoreBtn1" class="read-more-btn" onclick="toggleReadMore('more1', 'dots1', 'readMoreBtn1')">Read More</span>
+                <br><img src="img/playstore.png" alt="" style="width: 120px;" onclick="dcsplaystore()" ><img src="img/appstore.png" alt="" style="width: 120px;" onclick="dcsappstore()" ></p>
+              </div>
+            </div>
+
+            <div class="tm-portfolio-item">
+              <div class="tm-portfolio-name text-white tm-bg-white-transparent"style="background-image: url('img/apps_img/nb.png');
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: 30%;">
+              </div>
+              <div class="tm-portfolio-description">
+                <h3 class="tm-text-orange">
+                  Nearby Church
+                  <!-- <span class="tm-title-small">(2017 April to 2018 Dec)</span> -->
+                </h3>
+                <p class="mb-0" style="text-align: justify;">
+                  Welcome to "Nearby Churches," the ultimate app for finding and exploring churches in your vicinity. Using your current location, "Nearby Churches" instantly shows you the nearest churches, providing detailed information such as name, service times, contact<span id="dots2">...</span>
+                  <span id="more2" class="more-text"> details, photos, and map locations. You can save your preferred churches to your favorites list for quick access, filter churches by denomination (Catholic, Protestant, Orthodox, and more), and use the search feature to find specific churches by name. Enjoy a clean, intuitive design with easy-to-use map integration to help you get directions. "Nearby Churches" offers a seamless and enjoyable experience, whether you are new to an area or looking for a new place to worship. Download "Nearby Churches" now and start exploring the churches around you, enhancing your spiritual journey with easy access to nearby worship places, detailed information, and personalized features. We value your feedback and are constantly working to improve your experience, so please contact us through the app or email us at [support email] if you have any suggestions, questions, or issues. "Nearby Churches" respects your privacy, requiring location access only to show you nearby churches accurately without sharing your personal data with third parties. Join a community of users who trust "Nearby Churches" to guide them to their next place of worship.</span>
+                  <span id="readMoreBtn2" class="read-more-btn" onclick="toggleReadMore('more2', 'dots2', 'readMoreBtn2')">Read More</span>
+                  <br><img src="img/playstore.png" alt="" style="width: 120px;" onclick="dcsplaystore()" ><img src="img/appstore.png" alt="" style="width: 120px;" onclick="dcsappstore()" ></p>
+              </div>
+            </div>
+
+            <div class="tm-portfolio-item">
+              <div class="tm-portfolio-name text-white tm-bg-white-transparent"style="background-image: url('img/apps_img/ld.png');
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: 30%;">
+              </div>
+              <div class="tm-portfolio-description">
+                <h3 class="tm-text-blue">
+                  Liturgia Diaria
+                  <span class="tm-title-small">(2024 Auguest)</span>
+                </h3>
+                <p class="mb-0"  style="text-align: justify;">
+                  Daily Liturgy is the essential application for everyone who wants to experience spirituality in their daily lives. Focusing on the daily liturgy, the app offers readings and prayers, from the Offertory to Communion, so you can follow and reflect on each sacred moment.<span id="dots3">...</span>
+                  <span id="more3" class="more-text">Plus, with our daily quiz feature, you can test your knowledge and learn even more about the Christian faith in an interactive and engaging way. Ideal for those who want to delve deeper into the liturgy and grow spiritually.Download now and take the Word of God with you always! </span>
+                  <span id="readMoreBtn3" class="read-more-btn" onclick="toggleReadMore('more3', 'dots3', 'readMoreBtn3')">Read More</span>
+                  <br><img src="img/playstore.png" alt="" style="width: 120px;" onclick="ldplaystore()" ><img src="img/appstore.png" alt="" style="width: 120px;" onclick="ldappstore()" ></p>
+              </div>
+            </div>
+
+            <!-- <div class="tm-portfolio-item">
+              <div class="tm-portfolio-name text-white tm-bg-dark-gray">
+                Design School
+              </div>
+              <div class="tm-portfolio-description">
+                <h3 class="tm-text-dark-gray">
+                  Art Design College
+                  <span class="tm-title-small">
+                    (2012 May to 2014 Dec)
+                  </span>
+                </h3>
+                <p class="mb-0">
+                  Etiam porta est nisl, consectetur dapibus ante faucibus id.
+                  Nunc ullamcorper a quam eget tincidunt. Proin vehicula mauris
+                  ipsum, euismod dignissim dolor convallis ac.
+                </p>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End portfolio section -->
+
+    <!-- Contact section -->
+    <div id="tmContact" class="parallax-window" data-parallax="scroll" data-image-src="img/mini-profile-bg-02.jpg">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="tm-contact-items-container">
+              <div class="tm-contact-item">
+                <i class="fas fa-5x fa-briefcase tm-contact-item-icon"></i>
+                <p class="mb-0">
+                  Quisque venenatis viverra ultrices. Lorem ipsum dolor sit
+                  amet. Nullam sit amet tempor nisl.
+                </p>
+              </div>
+              <div class="tm-contact-item">
+                <i class="fas fa-5x fa-building tm-contact-item-icon"></i>
+                <p class="mb-0">
+                  Integer id malesuada ligula. Cras in fringilla nibh, sed
+                  semper turpis. Aliquam efficitur nisl nec.
+                </p>
+              </div>
+
+              <div class="tm-contact-item">
+                <i class="fas fa-5x fa-balance-scale tm-contact-item-icon"></i>
+                <p class="mb-0">
+                  Commodo id ullamcorper ac, dignissim at sapien. Nullam leo
+                  massa, varius ac massa et, tincidunt imperdiet.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <form
+              action="index.html"
+              method="POST"
+              id="tmContactForm"
+              class="tm-bg-white-transparent"
+            >
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="contact_name"
+                  name="contact_name"
+                  class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
+                  placeholder="Name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  id="contact_email"
+                  name="contact_email"
+                  class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
+                  placeholder="Email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <textarea
+                  rows="4"
+                  id="contact_message"
+                  name="contact_message"
+                  class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
+                  placeholder="Message"
+                  required
+                ></textarea>
+              </div>
+              <div class="text-center">
+                <button
+                  type="submit"
+                  class="btn tm-btn-submit rounded-0 text-white"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- row -->
+        <div class="row">
+          <footer class="col-12">
+            <p class="text-center tm-copyright-text">
+            Copyright 2019 Mini Profile Page 
+            
+            - Design: <a rel="nofollow" href="https://www.facebook.com/templatemo">TemplateMo</a></p>
+          </footer>
+        </div>
+      </div>
+      <!-- container -->
+    </div>
+    <!-- section -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/parallax.min.js"></script>
+    <script>
+      function detectMsBrowser() {
+        using_ms_browser =
+          navigator.appName == "Microsoft Internet Explorer" ||
+          (navigator.appName == "Netscape" &&
+            navigator.appVersion.indexOf("Edge") > -1) ||
+          (navigator.appName == "Netscape" &&
+            navigator.appVersion.indexOf("Trident") > -1);
+
+        if (using_ms_browser == true) {
+          alert(
+            "Please use Chrome or Firefox for the best browsing experience!"
+          );
+        }
       }
+      function setBrandMarginTop() {
+        var bottomContainerHeight = $(".tm-welcome-container").height();
 
-      const date = new Date(dateValue);
-
-      try {
-        await addDoc(collection(db, "church-events"), {
-          title,
-          description,
-          date,
+        $(".tm-brand-container-outer").css({
+          "margin-top": -bottomContainerHeight + "px"
         });
-
-        alert("Event added successfully!");
-        eventForm.reset();
-        fetchEvents();
-      } catch (err) {
-        console.error("Error adding event:", err);
-        alert("Failed to add event. Make sure you're logged in.");
       }
-    });
 
-    // Auth: Email login
-    document.getElementById("login-email").onclick = () => {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      signInWithEmailAndPassword(auth, email, password)
-        .catch(err => alert(err.message));
-    };
+      $(function() {
+        setBrandMarginTop();
+        detectMsBrowser();
 
-    // Auth: Sign up
-    document.getElementById("signup-email").onclick = () => {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      createUserWithEmailAndPassword(auth, email, password)
-        .catch(err => alert(err.message));
-    };
+        // Handle window resize event
+        $(window).resize(function() {
+          setBrandMarginTop();
+        });
+      });
 
-    // Auth: Google login
-    document.getElementById("login-google").onclick = () => {
-      signInWithPopup(auth, provider)
-        .catch(err => alert(err.message));
-    };
+      function toggleReadMore(moreId, dotsId, btnId) {
+  const moreText = document.getElementById(moreId);
+  const dots = document.getElementById(dotsId);
+  const btn = document.getElementById(btnId);
 
-    // Logout
-    logoutBtn.onclick = () => {
-      signOut(auth);
-    };
+  if (moreText.style.display === "none") {
+    moreText.style.display = "inline";
+    dots.style.display = "none";
+    btn.innerText = "Read Less";
+  } else {
+    moreText.style.display = "none";
+    dots.style.display = "inline";
+    btn.innerText = "Read More";
+  }
+}
 
-    // Auth state change
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        eventForm.style.display = "block";
-        logoutBtn.style.display = "inline-block";
-        authStatus.textContent = "Logged in as " + user.email;
-      } else {
-        eventForm.style.display = "none";
-        logoutBtn.style.display = "none";
-        authStatus.textContent = "Not logged in";
-      }
-    });
-  </script>
+  function dcsplaystore() {
+    window.location.href = 'https://play.google.com/store/apps/details?id=com.ethiccoders.dcs';
+}
+function dcsappstore() {
+    window.location.href = 'https://apps.apple.com/us/app/daily-catholic-saints/id6478463235';
+}
+function ldplaystore() {
+    window.location.href = 'https://play.google.com/store/apps/details?id=com.ethiccoders.liturgiadiaria';
+}
+function ldappstore() {
+    window.location.href = 'https://apps.apple.com/us/app/liturgia-diaria/id6636552546';
+}
+</script>
+<script src="https://stats.wp.com/e-202522.js" id="jetpack-stats-js" defer data-wp-strategy="defer"></script>
 </body>
+  </body>
 </html>
